@@ -1,0 +1,203 @@
+/* Change colors, fonts, and radius here. Every section updates automatically. */
+@import "tailwindcss";
+
+:root {
+  /* Colors */
+  --bg: #F8F7F4;
+  --surface: #FFFFFF;
+  --surface-alt: #F1EFEA;
+  --border: #E2DDD4;
+  --text: #14110F;
+  --text-muted: #5C574F;
+  --accent: #B5792A;
+  --accent-contrast: #FFFFFF;
+  --btn-primary-bg: #14110F;
+  --btn-primary-text: #FFFFFF;
+
+  /* Shape & spacing */
+  --radius-card: 12px;
+  --radius-button: 999px;
+  --shadow-card: 0 1px 2px rgba(20, 17, 15, 0.04);
+  --shadow-highlight: 0 14px 36px rgba(20, 17, 15, 0.08);
+  --section-padding-y: 56px;
+  --container-max: 1120px;
+
+  /* Typography */
+  --font-family: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-display-family: "Bricolage Grotesque", "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --section-padding-y: 92px;
+  }
+}
+
+@theme inline {
+  --font-sans: var(--font-family);
+  --font-display: var(--font-display-family);
+  --font-mono: var(--font-mono-family);
+
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-alt: var(--surface-alt);
+  --color-border: var(--border);
+  --color-text: var(--text);
+  --color-muted: var(--text-muted);
+  --color-accent: var(--accent);
+  --color-accent-contrast: var(--accent-contrast);
+  --color-btn-primary-bg: var(--btn-primary-bg);
+  --color-btn-primary-text: var(--btn-primary-text);
+
+  --radius-card: var(--radius-card);
+  --radius-button: var(--radius-button);
+
+  --shadow-card: var(--shadow-card);
+  --shadow-highlight: var(--shadow-highlight);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 80px;
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: var(--font-family);
+    color-scheme: light;
+  }
+
+  body {
+    margin: 0;
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: var(--font-family);
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-family);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--text);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--text);
+    outline-offset: 2px;
+  }
+}
+
+.eyebrow {
+  font-size: 12px;
+  line-height: 1.4;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--text-muted);
+}
+
+.section-shell {
+  padding-block: var(--section-padding-y);
+}
+
+.section-container {
+  max-width: var(--container-max);
+  margin-inline: auto;
+}
+
+/* Polished interactive touches */
+button.rounded-button:not([aria-expanded]),
+a.rounded-button {
+  transition:
+    transform 150ms ease-out,
+    box-shadow 150ms ease-out,
+    opacity 150ms ease-out,
+    background-color 150ms ease-out,
+    border-color 150ms ease-out,
+    color 150ms ease-out;
+}
+
+@media (hover: hover) {
+  button.rounded-button:not([aria-expanded]):hover,
+  a.rounded-button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(20, 17, 15, 0.12);
+  }
+}
+
+.link-underline {
+  text-decoration: none;
+  background-image: linear-gradient(currentColor, currentColor);
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  background-size: 0% 1px;
+  padding-bottom: 1px;
+  transition: background-size 200ms ease-out, color 200ms ease-out;
+}
+
+@media (hover: hover) {
+  .link-underline:hover {
+    background-size: 100% 1px;
+  }
+}
+
+.plan-card,
+.plan-card-accent {
+  transition:
+    transform 200ms ease-out,
+    border-color 200ms ease-out,
+    box-shadow 200ms ease-out;
+}
+
+@media (hover: hover) {
+  .plan-card:hover {
+    transform: translateY(-2px);
+    border-color: rgba(20, 17, 15, 0.28);
+  }
+
+  .plan-card-accent:hover {
+    transform: translateY(-2px);
+    border-color: #9A641E;
+  }
+}
+
+@keyframes page-enter {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.page-enter {
+  animation: page-enter 300ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .page-enter {
+    animation: none;
+  }
+
+  button.rounded-button:not([aria-expanded]),
+  a.rounded-button,
+  .link-underline,
+  .plan-card,
+  .plan-card-accent {
+    transition: none;
+  }
+
+  button.rounded-button:not([aria-expanded]):hover,
+  a.rounded-button:hover,
+  .plan-card:hover,
+  .plan-card-accent:hover {
+    transform: none;
+  }
+}
